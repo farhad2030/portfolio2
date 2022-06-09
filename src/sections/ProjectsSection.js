@@ -8,60 +8,45 @@ const ProjectsSection = () => {
         <span className="text-blue-500">//</span> Project{" "}
         <span className="text-blue-500">//</span>{" "}
       </div>
-      <div className="grid place-items-center  grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+      <div className="grid place-items-strach  grid-cols-1 md:grid-cols-3 gap-10 mb-10">
         <ProjectCard
           projectName="Carpentry-Expart"
           livesite="https://carpentry-expert.firebaseapp.com/"
           github="https://github.com/farhad2030/carpentry-expert-frontend"
           backend="https://github.com/farhad2030/carpentry-expart-server"
           image="images/carpentry-expart.png"
-          feature={
-            <ul>
-              <li>Admin and general role</li>
-              <li>Payment system with stripe</li>
-              <li>Authentication system with google and email and password</li>
-            </ul>
-          }
+          feature={[
+            "Admin and general role",
+            "Payment system with stripe",
+            "Authentication system with google and email and password",
+          ]}
         />
         <ProjectCard
           projectName="Dental-care"
           livesite="https://dental-care-47c25.web.app/"
           github="https://github.com/farhad2030/dental-care.git"
           image="images/dantal.png"
-          feature={
-            <ul>
-              <li>Display personal services</li>
-              <li>Authentication system implemented</li>
-              <li>Protected system implemented</li>
-            </ul>
-          }
+          feature={[
+            " Display personal services",
+            "Authentication system implemented",
+            "Protected system implemented",
+          ]}
         />
         <ProjectCard
           projectName="ComReview"
           livesite="https://deft-pony-e32850.netlify.app/reviews"
           github="https://github.com/farhad2030/review-chart.git"
           image="images/comreview.png"
-          feature={
-            <ul>
-              <li>Display blog</li>
-              <li>Use Graph</li>
-              <li>FAQ Section</li>
-            </ul>
-          }
+          feature={["Display blog", "Use Graph", "FAQ Section"]}
         />
       </div>
     </>
   );
 };
 
-const ProjectCard = ({
-  projectName,
-  github,
-  backend,
-  livesite,
-  image,
-  feature,
-}) => {
+const ProjectCard = (props) => {
+  const { projectName, github, backend, livesite, image, feature } = props;
+
   return (
     <div class="card  bg-base-100 shadow-xl ">
       <figure>
@@ -69,7 +54,11 @@ const ProjectCard = ({
       </figure>
       <div class="card-body">
         <h2 class="card-title">{projectName}</h2>
-        <p>{feature}</p>
+        <p className="my-5">
+          {feature.map((f, i) => {
+            return <li key={i}>{f}</li>;
+          })}
+        </p>
         <div class="card-actions justify-end">
           <a href={livesite}>
             <div class="badge badge-outline">Live demo</div>
@@ -85,8 +74,18 @@ const ProjectCard = ({
             ""
           )}
         </div>
-        <Link to="/projectDetails" className="btn my-10">
-          {" "}
+        <Link
+          to="/projectDetails"
+          className="btn mt-10"
+          state={{
+            projectName: projectName,
+            feature: feature,
+            backend: backend,
+            image: image,
+            livesite: livesite,
+            github: github,
+          }}
+        >
           More details
         </Link>
       </div>

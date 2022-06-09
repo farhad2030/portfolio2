@@ -1,6 +1,7 @@
 import React from "react";
 import { GrContactInfo } from "react-icons/gr";
 import { IoMdCodeDownload } from "react-icons/io";
+import ContactForm from "../sections/ContactForm";
 import ProjectsSection from "../sections/ProjectsSection";
 const Home = () => {
   return (
@@ -15,12 +16,10 @@ const Home = () => {
             <b>CONTACT ME</b> button.
           </p>
           <div>
-            <a href="">
-              <button className="btn m-5">
-                CONTACT ME
-                <GrContactInfo className="m-5 " />
-              </button>
-            </a>
+            <label for="contact-form" className="btn m-5">
+              CONTACT ME
+              <GrContactInfo className="m-5 " />
+            </label>
             <a
               href="https://drive.google.com/file/d/1740W-lLXPCaIS3xa8UJt8a6btZWoWwPG/view?usp=sharing"
               target="_blank"
@@ -40,6 +39,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <ContactForm />
       <ProjectsSection />
     </div>
   );
